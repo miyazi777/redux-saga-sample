@@ -4,12 +4,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function App({ counter, dispatch }) {
-  const action = (type) => () => dispatch({ type });
+  const action = (type, value) => () => dispatch({ type, value });
 
   return (
     <div className="App">
-      Clicked: {counter} times <button onClick={action('INCREMENT')}>add + 1</button>
-      <button onClick={action('INCREMENT_ASYNC')}>add + 1(async)</button>
+      Clicked: {counter} times <button onClick={action('INCREMENT', 1)}>add + 1</button>
+      <button onClick={action('INCREMENT', 3)}>add + 3</button>
+      <button onClick={action('INCREMENT_ASYNC', 1)}>add + 1(async)</button>
+      <button onClick={action('INCREMENT_ASYNC', 3)}>add + 3(async)</button>
     </div>
   );
 }

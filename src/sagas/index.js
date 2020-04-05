@@ -1,8 +1,9 @@
-import { put, takeEvery, delay } from 'redux-saga/effects'
+import { take, put, takeEvery, delay } from 'redux-saga/effects'
 
 export function* incrementAsync() {
   yield delay(500); // 500ms待つ
-  yield put({ type: 'INCREMENT' }); // INCREMENT actionをdispatchする
+  const action = yield take('INCREMENT_ASYNC'); // アクションを待つ
+  yield put({ type: 'INCREMENT', value: action.value }); // INCREMENT actionをdispatchする
 }
 
 export default function* rootSaga() {
