@@ -9,6 +9,7 @@ function App({ counter, dispatch }) {
   return (
     <div className="App">
       Clicked: {counter} times <button onClick={action('INCREMENT')}>add + 1</button>
+      <button onClick={action('INCREMENT_ASYNC')}>add + 1(async)</button>
     </div>
   );
 }
