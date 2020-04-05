@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+//import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
+function App({ counter, dispatch }) {
+  const action = (type) => () => dispatch({ type });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Clicked: {counter} times <button onClick={action('INCREMENT')}>add + 1</button>
     </div>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    counter: state.counter,
+  }
+}
+
+export default connect(mapStateToProps)(App);
